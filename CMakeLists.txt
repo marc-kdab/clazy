@@ -83,6 +83,7 @@ endif()
 
 include_directories(${CMAKE_BINARY_DIR})
 include_directories(${CLANG_INCLUDE_DIRS} ${CMAKE_SOURCE_DIR} ${CMAKE_SOURCE_DIR}/src)
+include_directories(/usr/include/qt /usr/include/qt/QtCore)
 link_directories("${LLVM_INSTALL_PREFIX}/lib" ${LLVM_LIBRARY_DIRS})
 
 macro(link_to_llvm name)
