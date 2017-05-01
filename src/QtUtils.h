@@ -197,6 +197,18 @@ CLAZYLIB_EXPORT clang::CXXMethodDecl* pmfFromConnect(clang::CallExpr *funcCall, 
 CLAZYLIB_EXPORT clang::CXXMethodDecl* pmfFromUnary(clang::Expr *e);
 CLAZYLIB_EXPORT clang::CXXMethodDecl* pmfFromUnary(clang::UnaryOperator *uo);
 
+inline bool connectSignatureIsNormalized(const std::string &signature)
+{
+    if (signature.empty())
+        return true;
+
+    for (auto c : signature)
+        if (isspace(c)) // Having a space also handles the "const " case.
+            return false;
+
+    return true;
+}
+
 }
 
 #endif
