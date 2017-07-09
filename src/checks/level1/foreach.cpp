@@ -35,10 +35,10 @@
 using namespace clang;
 using namespace std;
 
-const std::map<std::string, std::vector<std::string> > & detachingMethodsMap()
+const std::map<llvm::StringRef, std::vector<llvm::StringRef>> & detachingMethodsMap()
 {
     // List of methods causing detach
-    static std::map<std::string, std::vector<std::string> > methodsMap;
+    static std::map<llvm::StringRef, std::vector<llvm::StringRef> > methodsMap;
     if (methodsMap.empty()) {
         methodsMap["QListSpecialMethods"] = {"first", "last", "begin", "end", "front", "back"};
         methodsMap["QList"] = methodsMap["QListSpecialMethods"];
