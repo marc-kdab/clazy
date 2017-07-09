@@ -195,9 +195,10 @@ bool Foreach::containsDetachments(Stmt *stm, clang::ValueDecl *containerValueDec
             auto recordDecl = dyn_cast<CXXRecordDecl>(declContext);
             if (recordDecl) {
                 const std::string className = Utils::rootBaseClass(recordDecl)->getQualifiedNameAsString();
-                if (detachingMethodsMap().find(className) != detachingMethodsMap().end()) {
+                auto it = detachingMethodsMap().find(className);
+                if (it != detachingMethodsMap().end()) {
                     const std::string functionName = valDecl->getNameAsString();
-                    const auto &allowedFunctions = detachingMethodsMap().at(className);
+                    const auto &allowedFunctions = it->second;
                     if (clazy_std::contains(allowedFunctions, functionName)) {
                         Expr *expr = memberExpr->getBase();
 
